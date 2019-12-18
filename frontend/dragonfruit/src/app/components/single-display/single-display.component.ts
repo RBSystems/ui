@@ -68,23 +68,21 @@ export class SingleDisplayComponent implements OnInit, IControlTab {
       Math.abs(evt.deltaX) > 40 ? (evt.deltaX > 0 ? "right" : "left") : "";
     const y = Math.abs(evt.deltaY) > 40 ? (evt.deltaY > 0 ? "down" : "up") : "";
 
-    // console.log(x, y);
-
-    if (x === "right" && this.canPageLeft()) {
-      // console.log('paging left...');
+    if (x === "right") {
       this.pageLeft();
     }
-    if (x === "left" && this.canPageRight()) {
-      // console.log('paging right...');
+
+    if (x === "left") {
       this.pageRight();
     }
   }
 
   pageLeft = () => {
-    if (this.canPageLeft()) {
-      this.curPage--;
-      // console.log('going to page ', this.curPage);
+    if (!this.canPageLeft()) {
+      return;
     }
+
+    this.curPage--;
 
     // scroll to the bottom of the page
     const idx = this.curPage;
@@ -96,10 +94,11 @@ export class SingleDisplayComponent implements OnInit, IControlTab {
   };
 
   pageRight = () => {
-    if (this.canPageRight()) {
-      this.curPage++;
-      // console.log('going to page ', this.curPage);
+    if (!this.canPageRight()) {
+      return;
     }
+
+    this.curPage++;
 
     // scroll to the top of the page
     const idx = this.curPage;

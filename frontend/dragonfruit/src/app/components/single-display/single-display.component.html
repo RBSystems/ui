@@ -6,8 +6,9 @@
 
   <div class="input-section">
     <div class="input-column" (swipe)="onSwipe($event)">
-      <div *ngFor="let p of pages; let i = index">
+      <ng-container *ngFor="let p of pages; let i = index">
         <ng-container [ngSwitch]="p">
+          <!-- 1 button -->
           <div
             [id]="'page' + i"
             class="button-row two center"
@@ -26,6 +27,8 @@
               [title]="(cg?.inputs)[i * 6 + 1].name"
             ></square-button>
           </div>
+
+          <!-- 2 buttons -->
           <div [id]="'page' + i" class="button-row two left" *ngSwitchCase="2">
             <square-button
               class="input"
@@ -41,6 +44,8 @@
             ></square-button>
             <square-button class="input" [empty]="true"></square-button>
           </div>
+
+          <!-- 3 buttons -->
           <div [id]="'page' + i" class="button-row three" *ngSwitchCase="3">
             <square-button
               class="input"
@@ -61,6 +66,8 @@
               [title]="(cg?.inputs)[i * 6 + 2].name"
             ></square-button>
           </div>
+
+          <!-- 4 buttons -->
           <div [id]="'page' + i" class="button-row four" *ngSwitchCase="4">
             <square-button
               class="input"
@@ -88,6 +95,8 @@
               [title]="(cg?.inputs)[i * 6 + 3].name"
             ></square-button>
           </div>
+
+          <!-- 5 buttons -->
           <div [id]="'page' + i" class="button-row five" *ngSwitchCase="5">
             <square-button
               class="input"
@@ -120,6 +129,8 @@
               [title]="(cg?.inputs)[i * 6 + 4].name"
             ></square-button>
           </div>
+
+          <!-- 6 buttons -->
           <div [id]="'page' + i" class="button-row six" *ngSwitchCase="6">
             <square-button
               class="input"
@@ -165,8 +176,10 @@
             ></square-button>
           </div>
         </ng-container>
-      </div>
+      </ng-container>
     </div>
+
+    <!-- page indicator -->
     <div class="page-indicator" [class.blank]="cg?.inputs.length <= 6">
       <span
         *ngFor="let p of pages; let i = index"
